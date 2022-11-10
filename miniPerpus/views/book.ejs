@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Filter</label><br>
+    <form method="get" action="/book">
+        <button>All</button>
+        <button type="submit" name="filter" value="Basic">Basic</button>
+        <button type="submit" name="filter" value="Intermediate">Intermediate</button>
+        <button type="submit" name="filter" value="Advance">Advance</button>
+    </form>
+    <center>
+        <h1>List Books</h1>
+        <a href="/book/add"><button>Add Book</button></a><br>
+        <br>
+        <table border="1">
+            <tr>
+                <th>Title</th>
+                <th>Level</th>
+                <th>Code</th>
+                <th>Publish</th>
+                <th>Author</th>
+                <th>Action</th>
+            </tr>
+           <% data.forEach((el) => { %>
+            <tr>
+                <td><%= el.title %></td>
+                <td><%= el.level %></td>
+                <td><%= el.code %></td>
+                <td><%= el.publishYear %></td>
+                <td><%= el.Profile.firstName+"  "+el.Profile.lastName %></td>
+                <td>
+                    <a href="/book/<%= el.id %>"><button>Read</button></a>
+                    <a href="/book/<%= el.id %>/edit"><button>Edit</button></a>
+                    <a href="/book/<%= el.id %>/delete"><button>Delete</button></a>
+                </td>
+            </tr>
+           <% }) %>
+        </table>
+    </center>
+</body>
+</html>
